@@ -217,6 +217,7 @@ local function set_groups()
 
     -- Indent blankline.
     IndentBlanklineContextChar = { fg = colors.func },
+    IndentBlanklineContextStart = { sp = colors.func, underline = true },
 
     -- Neogit.
     NeogitDiffContextHighlight = { bg = colors.line },
@@ -278,7 +279,8 @@ local function set_groups()
     VM_Mono = { fg = colors.bg, bg = colors.comment },
   }
 
-  groups = vim.tbl_extend('force', groups, type(config.overrides) == 'function' and config.overrides() or config.overrides)
+  groups = vim.tbl_extend('force', groups,
+    type(config.overrides) == 'function' and config.overrides() or config.overrides)
 
   for group, parameters in pairs(groups) do
     vim.api.nvim_set_hl(0, group, parameters)
